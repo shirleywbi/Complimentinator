@@ -22,12 +22,11 @@ export default function App() {
     <View style={styles.container}>
       <Text>{compliment}</Text>
       <TouchableOpacity onPress={getCompliment}>
-        <Image source={require("./assets/heart-button.png")}></Image>
+        <Image 
+          style={styles.heartButton} 
+          accessibilityLabel="Get a compliment" 
+          source={require("./assets/heart-button.png")}/>
       </TouchableOpacity>
-      <Button
-        onPress={getCompliment}
-        accessibilityLabel="Get a compliment"
-      />
       <StatusBar style="auto" />
     </View>
   );
@@ -40,4 +39,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  heartButton: {
+    width: '474px',
+    height: '465px',
+  }
 });
