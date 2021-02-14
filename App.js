@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View, Button, Image } from 'react-native';
 
 export default function App() {
-  const compliment = "";
+  const [compliment, setCompliment] = useState("");
 
-  getCompliment = () => {
+  const getCompliment = () => {
     return "You look great!";
   };
 
