@@ -20,7 +20,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>{compliment}</Text>
+      <Text style={styles.complimentText}>{compliment}</Text>
       <TouchableOpacity style={styles.buttonContainer} onPress={getCompliment}>
         <Image 
           style={styles.heartButton} 
@@ -40,8 +40,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonContainer: {
+    margin: '4rem',
     width: '30%',
     height: '30%',
+  },
+  complimentText: {
+    fontSize: '25px',
+    fontFamily: "'Trebuchet MS', sans-serif",
   },
   heartButton: {
     width: '100%',
