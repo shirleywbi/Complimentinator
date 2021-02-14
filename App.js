@@ -1,29 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
-import axios from 'axios';
-import { formatCompliment } from "./util/util";
-
-const compliments = [
-  "Your positivity is infectious.",
-  "You’re a true gift to the people in your life.",
-  "You inspire me to be a better person.",
-  "Your smile makes me smile.",
-  "Thanks for being you!"
-];
+import { compliments } from "./util/compliments";
 
 export default function App() {
   const [compliment, setCompliment] = useState("Hope you have a great day!");
 
   const getCompliment = () => {
-    const url = "https://complimentr.com/api";
-    axios.get(url)
-      .then(response => {
-        response.data?.compliment ? 
-          setCompliment(formatCompliment(response.data.compliment)) : 
-          setCompliment(compliments[Math.floor(Math.random() * compliments.length)]);
-      })
-      .catch(err => console.log(err));
+    setCompliment(compliments[Math.floor(Math.random() * compliments.length)]);
   };
 
   return (
