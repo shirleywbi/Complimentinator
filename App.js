@@ -4,6 +4,14 @@ import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import axios from 'axios';
 import { formatCompliment } from "./util/util";
 
+const compliments = [
+  "Your positivity is infectious.",
+  "You’re a true gift to the people in your life.",
+  "You inspire me to be a better person.",
+  "Your smile makes me smile.",
+  "Thanks for being you!"
+];
+
 export default function App() {
   const [compliment, setCompliment] = useState("Hope you have a great day!");
 
@@ -13,7 +21,7 @@ export default function App() {
       .then(response => {
         response.data?.compliment ? 
           setCompliment(formatCompliment(response.data.compliment)) : 
-          setCompliment("I love you.")
+          setCompliment(compliments[Math.floor(Math.random() * compliments.length)]);
       })
       .catch(err => console.log(err));
   };
