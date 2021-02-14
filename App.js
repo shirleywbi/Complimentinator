@@ -1,10 +1,19 @@
+// @refresh reset
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import firebaseConfig from './firebase.json';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 import { compliments } from "./util/compliments";
 
+// Initialize Firebase
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig);
+}
+
 export default function App() {
-  const [compliment, setCompliment] = useState("Hope you have a great day!");
+  const [compliment, setCompliment] = useState("You're amazing just the way you are.");
 
   const getCompliment = () => {
     setCompliment(compliments[Math.floor(Math.random() * compliments.length)]);
@@ -12,11 +21,16 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.complimentText}>{compliment}</Text>
+      <Text 
+        style={styles.complimentText}
+      >
+        {compliment}
+      </Text>
       <TouchableOpacity style={styles.buttonContainer} onPress={getCompliment}>
         <Image 
           style={styles.heartButton} 
-          accessibilityLabel="Get a compliment" 
+          accessibilityLabel="Heart button: Click to get a compliment"
+          resizeMode="contain"
           source={require("./assets/heart-button.png")}/>
       </TouchableOpacity>
       <StatusBar style="auto" />
@@ -32,16 +46,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonContainer: {
-    margin: '4rem',
-    width: '30%',
-    height: '30%',
+    margin: 4,
+    position: "absolute",
+    bottom: 100,
+    width: 250,
+    height: 250,
+    alignSelf: 'center',
   },
   complimentText: {
-    fontSize: '25px',
-    fontFamily: "'Trebuchet MS', sans-serif",
+    position: "relative",
+    bottom: '20%',
+    margin: 20,
+    fontSize: 25,
+    textAlign: "center",
   },
   heartButton: {
-    width: '100%',
-    height: '100%',
+    flex: 1,
+    height: undefined, 
+    width: undefined,
+    alignSelf: 'stretch',
   }
 });
