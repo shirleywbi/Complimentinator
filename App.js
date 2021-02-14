@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import axios from 'axios';
 import { formatCompliment } from "./util/util";
 
@@ -21,7 +21,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>{compliment}</Text>
-      <TouchableOpacity onPress={getCompliment}>
+      <TouchableOpacity style={styles.buttonContainer} onPress={getCompliment}>
         <Image 
           style={styles.heartButton} 
           accessibilityLabel="Get a compliment" 
@@ -39,8 +39,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  buttonContainer: {
+    width: '30%',
+    height: '30%',
+  },
   heartButton: {
-    width: '474px',
-    height: '465px',
+    width: '100%',
+    height: '100%',
   }
 });
